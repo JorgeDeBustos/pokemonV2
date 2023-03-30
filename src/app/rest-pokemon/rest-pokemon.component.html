@@ -59,7 +59,7 @@
   </div>
 </nav>
 
-<div class="row" style="margin-top:10rem">
+<div class="row" style="padding-top:10rem">
   <div class="col-1"></div>
   <div class="col-10">
     <div *ngIf="!pokemonArrayLoaded" class="row">
@@ -123,15 +123,13 @@
                 <div class="card-body">
                   <div class="row">
                     <div *ngFor="let type of pokemon.types" class="col-6">
-                      <span class="card-subtitle mb-2 text-muted"><b>{{
-                        type.type.name | titlecase
-                      }}</b></span>
+                      <span class="card-subtitle mb-2 text-muted"
+                        ><b>{{ type.type.name | titlecase }}</b></span
+                      >
                     </div>
                   </div>
                 </div>
-                
               </div>
-              
 
               <h6 style="margin-top:10px" class="card-text">Stats:</h6>
               <div class="card">

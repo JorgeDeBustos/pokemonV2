@@ -1,0 +1,4 @@
+.card-header {
+  /* background-image: radial-gradient(to bottom right, #2b73b9, #c7a008); https://cdn.pixabay.com/photo/2019/11/18/15/46/pokemon-4635112__340.png */
+  background-image: radial-gradient(circle at center, #c7a008, #0000,#2b73b9);
+}
