@@ -19,20 +19,26 @@ export class RestPokemonComponent implements OnInit {
   public pokemonArrayLoaded: boolean = false;
 
   constructor(private pokemonService: PokemonService) {}
+
   ngOnInit() {
     this.getPokemonForms();
   }
 
+  /**
+   * Call to https://pokeapi.co/api/v2/ with offset and limit dynamic values to obtain the urls with the information of each pokemon
+   */
   getPokemonForms() {
     this.pokemonArrayLoaded = false;
     this.pokemonService
       .getPokemonForms(this.offset, this.limit)
       .subscribe((data) => {
-        console.log('Pokemon ', data);
         this.parsePokemonListToArray(data);
       });
   }
 
+  /**
+   * Call to the url of each pokemon to obtain its information and store it in the pokemonArray array
+   */
   parsePokemonListToArray(pokemonForms) {
     this.maxLimitPokemon = pokemonForms.count;
     this.nextApiUrl = pokemonForms.next;
@@ -51,10 +57,16 @@ export class RestPokemonComponent implements OnInit {
     });
   }
 
+  /**
+   * Transform hectograms to kilograms and decimetres to meters
+   */
   transformMetric(metric: number) {
     return metric / 10;
   }
 
+  /**
+   * Search if the name entered in the filter matches any pokemon name, if so it is added to the pokemonArrayToShow array, if the filter is empty the pokemonArrayToShow array is equal to that of all pokemon (pokemonArray).
+   */
   searchPokemon() {
     if (this.filter == '') {
       this.pokemonArrayToShow = this.pokemonArray;
@@ -69,6 +81,9 @@ export class RestPokemonComponent implements OnInit {
     this.pokemonArrayLoaded = true;
   }
 
+  /**
+   * Change the value of the limit variable when selecting how many pokemon you want to see on the same page
+   */
   changePokemonNumber() {
     if (Number(this.optionSelected)) {
       this.limit = Number(this.optionSelected);
@@ -79,6 +94,9 @@ export class RestPokemonComponent implements OnInit {
     this.getPokemonForms();
   }
 
+  /**
+   * Changes the value of the offset variable when the Previous or Next header button is selected
+   */
   changePage(type) {
     if (type == 'next') {
       this.offset = this.offset + this.limit;
@@ -88,7 +106,10 @@ export class RestPokemonComponent implements OnInit {
     this.getPokemonForms();
   }
 
-  transformString(name) {
+  /**
+   * Replace hyphens in stat names
+   */
+  transformStatString(name) {
     return name.replace(/-/g, ' ');
   }
 }

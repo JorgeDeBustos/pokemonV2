@@ -59,10 +59,10 @@
   </div>
 </nav>
 
-<div class="row" style="padding-top:10rem">
+<div class="row padding-top">
   <div class="col-1"></div>
   <div class="col-10">
-    <div *ngIf="!pokemonArrayLoaded" class="row">
+    <div *ngIf="!pokemonArrayLoaded" class="row margin-top">
       <div
         class="col-12 d-flex align-items-center justify-content-center gap-3"
       >
@@ -86,8 +86,7 @@
       <div *ngIf="pokemonArrayToShow.length != 0" class="row">
         <div
           *ngFor="let pokemon of pokemonArrayToShow"
-          class="col-xl-3 col-lg-4 col-md-6 col-sm-12"
-          style="margin-bottom:2rem"
+          class="col-xl-3 col-lg-4 col-md-6 col-sm-12 margin-bottomrem"
         >
           <div class="card">
             <div
@@ -118,7 +117,7 @@
                   >
                 </div>
               </div>
-              <h6 style="margin-top:10px" class="card-text">Types:</h6>
+              <h6 class="card-text margin-top">Types:</h6>
               <div class="card">
                 <div class="card-body">
                   <div class="row">
@@ -131,19 +130,36 @@
                 </div>
               </div>
 
-              <h6 style="margin-top:10px" class="card-text">Stats:</h6>
+              <h6 class="card-text margin-top">Stats:</h6>
               <div class="card">
                 <div class="card-body">
-                  <div *ngFor="let stat of pokemon.stats" class="row">
-                    <div class="col-9">
-                      <span class="card-subtitle mb-2 text-muted"
+                  <div
+                    *ngFor="let stat of pokemon.stats"
+                    class="row margin-bottompx"
+                  >
+                    <div
+                      class="
+                        col-9
+                        d-flex
+                        align-items-center
+                        justify-content-start
+                      "
+                    >
+                      <span class="card-subtitle text-muted"
                         ><b>{{
-                          transformString(stat.stat.name) | titlecase
+                          transformStatString(stat.stat.name) | titlecase
                         }}</b></span
                       >
                     </div>
-                    <div class="col-3 d-flex justify-content-end">
-                      <span class="card-subtitle mb-2 text-muted">{{
+                    <div
+                      class="
+                        col-3
+                        d-flex
+                        align-items-center
+                        justify-content-end
+                      "
+                    >
+                      <span class="card-subtitle text-muted">{{
                         stat.base_stat
                       }}</span>
                     </div>
